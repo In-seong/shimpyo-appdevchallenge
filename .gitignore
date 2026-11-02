@@ -1,0 +1,25 @@
+CLAUDE.local.md
+.env
+.srv_pw
+.DS_Store
+.playwright-mcp/
+
+# Laravel
+shimpyo/node_modules/
+shimpyo/vendor/
+shimpyo/.env
+shimpyo/storage/logs/*
+shimpyo/storage/framework/cache/data/*
+shimpyo/storage/framework/sessions/*
+shimpyo/storage/framework/views/*
+shimpyo/bootstrap/cache/*.php
+shimpyo/database/database.sqlite
+shimpyo/public/build/
+
+# Android
+shell-app/.gradle/
+shell-app/build/
+shell-app/app/build/
+shell-app/local.properties
+shell-app/keystore/
+shell-app/keystore.properties

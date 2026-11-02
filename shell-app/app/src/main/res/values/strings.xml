@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">쉼표</string>
+    <string name="offline_title">연결이 끊겼어요</string>
+    <string name="offline_body">네트워크를 확인한 뒤 다시 시도해 주세요.</string>
+    <string name="offline_retry">다시 시도</string>
+</resources>

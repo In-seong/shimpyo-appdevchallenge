@@ -1,0 +1,98 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
+
+/* ───────────────────────────────────────────────
+   쉼표 — 디자인 토큰
+   색은 한국 고속도로 표지 체계에서 가져왔다.
+   녹색=고속도로, 파랑=휴게소 안내, 황색=주의.
+   ─────────────────────────────────────────────── */
+:root {
+  --paper:      #F4F6F2;
+  --paper-2:    #FFFFFF;
+  --paper-sunk: #E9EDE7;
+  --ink:        #18231D;
+  --quiet:      #7E8A82;
+  --line:       #D8DED6;
+
+  --moss:       #19744A;
+  --moss-soft:  #E4F0E9;
+  --rest:       #2D5F8A;
+  --rest-soft:  #E3EDF5;
+  --caution:    #D99023;
+  --caution-soft:#FBF0DC;
+  --alert:      #B4472C;
+
+  --r-chip:   999px;
+  --r-card:   22px;
+  --r-panel:  12px;
+  --r-row:    4px;
+
+  --tap: 80px;                 /* 차량 터치 최소 영역 */
+  --bar: 76px;
+
+  --fs-hero:  clamp(56px, 7.2vw, 108px);
+  --fs-title: clamp(26px, 2.6vw, 42px);
+  --fs-lead:  clamp(19px, 1.5vw, 26px);
+  --fs-body:  clamp(16px, 1.1vw, 19px);
+  --fs-small: 15px;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+* { box-sizing: border-box; }
+
+/* 한글은 어절 단위로 끊어야 읽힌다. 단어 중간에서 줄이 바뀌는 걸 막는다. */
+body, h1, h2, h3, p, button, li, dd, dt, td, th, label, span {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+html, body, #app, #admin { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+               system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, p, figure { margin: 0; }
+button { font: inherit; color: inherit; }
+
+/* 숫자는 항상 자리폭 고정 — 타이머가 떨리지 않게 */
+.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+
+:focus-visible {
+  outline: 3px solid var(--moss);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* 스크롤바 — 차량 화면에서 거슬리지 않게 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ───────────────────────────────────────────────
+   차트 범주 색 — scripts/validate_palette.js 전 항목 PASS
+   #19744A ↔ #8A4F9E : deutan ΔE 12.2 · tritan 15.8 · 정상시야 24.0
+   순서 고정. 계열이 늘어도 순환시키지 않는다.
+   ─────────────────────────────────────────────── */
+:root {
+  --cat-1: #19744A;
+  --cat-2: #8A4F9E;
+  --grid:  #E6EAE4;
+  --good:  #19744A;
+  --bad:   #B4472C;
+}
