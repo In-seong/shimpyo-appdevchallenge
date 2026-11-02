@@ -23,3 +23,6 @@ shell-app/app/build/
 shell-app/local.properties
 shell-app/keystore/
 shell-app/keystore.properties
+
+# 접수양식 작업 디렉터리
+submission/unpacked/
