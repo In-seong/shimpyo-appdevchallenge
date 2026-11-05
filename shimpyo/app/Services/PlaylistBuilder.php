@@ -29,14 +29,34 @@ class PlaylistBuilder
         $items  = [];
         $total  = 0;
 
-        // 남은 시간에 가장 가깝게 채우는 그리디 — 매번 "남은 예산에 들어가는 가장 긴 것"
+        /*
+         * 남은 시간을 채우되 "여러 편"이 되도록 고른다.
+         *
+         * 단순히 들어가는 가장 긴 것을 고르면 12분 예산에 12분짜리 한 편이 뽑혀
+         * 채움률은 높아도 재생목록이라 부르기 어려워진다. 그래서 뒤에 최소 한 편이
+         * 더 들어갈 여지를 남기는 선에서 가장 긴 것을 고르고, 더는 쪼갤 수 없을 때만
+         * 남은 예산을 가장 크게 채우는 것으로 마무리한다.
+         */
         $remaining = $pool->all();
+        $shortest  = $pool->min('duration_sec');
 
         while ($budget > 60 && $remaining) {
+            // 한 편 더 들어갈 여유가 있으면 그만큼 상한을 낮춘다
+            $cap = ($budget >= $shortest * 2) ? $budget - $shortest : $budget;
+
             $pick = null;
             foreach ($remaining as $i => $c) {
-                if ($c->duration_sec <= $budget && ($pick === null || $c->duration_sec > $pick[1]->duration_sec)) {
+                if ($c->duration_sec <= $cap && ($pick === null || $c->duration_sec > $pick[1]->duration_sec)) {
                     $pick = [$i, $c];
+                }
+            }
+
+            // 상한을 낮춰서 아무것도 못 고르면 원래 예산으로 한 번 더 본다
+            if ($pick === null && $cap < $budget) {
+                foreach ($remaining as $i => $c) {
+                    if ($c->duration_sec <= $budget && ($pick === null || $c->duration_sec > $pick[1]->duration_sec)) {
+                        $pick = [$i, $c];
+                    }
                 }
             }
 

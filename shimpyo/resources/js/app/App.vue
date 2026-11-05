@@ -38,7 +38,8 @@ const base = {
 const presets = {
   holiday:  { driving_time_sec: 8400,  hour: 14, seat_passenger: true,  seat_rear_left: true,  seat_rear_right: true,  warn_tire: false, soc: 42 },
   weekend:  { driving_time_sec: 2400,  hour: 11, seat_passenger: true,  seat_rear_left: true,  seat_rear_right: true,  warn_tire: false, soc: 55 },
-  business: { driving_time_sec: 2400,  hour: 9,  seat_passenger: false, seat_rear_left: false, seat_rear_right: false, warn_tire: false, soc: 61 },
+  // 내비 목적지 없음 → ChargingPlan 이 내려오지 않아 SoC 변화율 폴백이 쓰인다 (상단에 '추정' 표시)
+  business: { driving_time_sec: 2400,  hour: 9,  seat_passenger: false, seat_rear_left: false, seat_rear_right: false, warn_tire: false, soc: 61, navigating: false },
   night:    { driving_time_sec: 10800, hour: 2,  seat_passenger: false, seat_rear_left: false, seat_rear_right: false, warn_tire: false, soc: 23 },
   warning:  { driving_time_sec: 5400,  hour: 16, seat_passenger: true,  seat_rear_left: false, seat_rear_right: false, warn_tire: true,  soc: 38 },
 };

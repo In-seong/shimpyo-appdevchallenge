@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+  :root{--paper:#F4F6F2;--ink:#18231D;--quiet:#7E8A82;--moss:#19744A;--line:#D8DED6;}
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1920px;height:880px;overflow:hidden;background:var(--paper);
+    font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+    word-break:keep-all;-webkit-font-smoothing:antialiased}
+  #bar{height:160px;display:flex;align-items:center;gap:26px;padding:0 56px;
+    background:#fff;border-bottom:1px solid var(--line)}
+  #mark{font-size:92px;line-height:.42;font-weight:700;color:var(--moss);flex:0 0 auto}
+  #txt{flex:1;min-width:0}
+  #t1{font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1.25;
+    opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
+  #t2{font-size:24px;color:var(--quiet);margin-top:8px;line-height:1.4;
+    opacity:0;transform:translateY(8px);transition:opacity .45s ease .06s,transform .45s ease .06s}
+  .on #t1,.on #t2{opacity:1;transform:none}
+  #step{flex:0 0 auto;font-size:21px;font-weight:600;color:#fff;background:var(--moss);
+    padding:10px 22px;border-radius:999px;font-variant-numeric:tabular-nums;opacity:0;transition:opacity .4s}
+  .on #step{opacity:1}
+  #frame{width:1920px;height:720px;border:0;display:block}
+  /* 타이틀 카드 */
+  #cover{position:fixed;inset:0;background:var(--paper);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:14px;z-index:9;transition:opacity .7s ease}
+  #cover.hide{opacity:0;pointer-events:none}
+  #cmark{font-size:230px;line-height:.42;font-weight:700;color:var(--moss);margin-bottom:84px}
+  #ctitle{font-size:84px;font-weight:800;letter-spacing:-.05em}
+  #csub{font-size:32px;color:var(--quiet)}
+  #cmeta{font-size:21px;color:var(--quiet);margin-top:30px}
+</style></head><body>
+<div id="bar"><div id="mark">,</div><div id="txt"><div id="t1"></div><div id="t2"></div></div><div id="step"></div></div>
+<iframe id="frame" src="about:blank"></iframe>
+<div id="cover">
+  <div id="cmark">,</div>
+  <div id="ctitle">쉼표</div>
+  <div id="csub">충전 시간을 차량이 스스로 채워드립니다</div>
+  <div id="cmeta">현대자동차그룹 차량용 앱 개발 공모전 · Pleos Connect</div>
+</div>
+<script>
+  const bar=document.getElementById('bar');
+  window.cap=(t1,t2,step)=>{bar.classList.remove('on');
+    setTimeout(()=>{document.getElementById('t1').textContent=t1;
+      document.getElementById('t2').textContent=t2||'';
+      document.getElementById('step').textContent=step||'';
+      bar.classList.add('on');},180);};
+  window.hideCover=()=>document.getElementById('cover').classList.add('hide');
+  window.showCover=(t,s)=>{document.getElementById('ctitle').textContent=t;
+    document.getElementById('csub').textContent=s;
+    document.getElementById('cmeta').textContent='';
+    document.getElementById('cover').classList.remove('hide');};
+  window.loadApp=(u)=>document.getElementById('frame').src=u;
+</script></body></html>

@@ -299,6 +299,9 @@ class PleosVehicleGateway
             'max_charging_power' => $this->getMaxChargingPower(),
             'driving_distance_km'=> $this->getTripCurrentDrivingDistance(),
             'destination'        => $dest['name'] ?? null,
+            // 콘텐츠 모드가 '출발 후 이어 들을 분량'을 계산할 때 쓴다
+            'remain_time_sec'    => $dest['remainTime'] ?? null,
+            'remain_distance_km' => $dest['remainDistance'] ?? null,
             'navigating'         => $dest !== null,
         ];
     }

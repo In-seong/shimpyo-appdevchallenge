@@ -15,6 +15,7 @@
 | 차량 앱 (웹뷰) | **https://shimpyo.revuplan.com** |
 | 관리자 | **https://shimpyo-admin.revuplan.com** |
 | APK 내려받기 | **https://shimpyo.revuplan.com/download/shimpyo.apk** |
+| 시연 영상 (2분 6초) | **https://shimpyo.revuplan.com/download/shimpyo-demo.mp4** · 저장소 [`video/`](video/) |
 
 차량 디스플레이(1920×720) 기준으로 설계했고 PC·휴대폰에서도 같은 화면이 열립니다.
 우측 상단 **차량 데이터** 버튼으로 주행 시간·시각·동승자·경고등·배터리를 바꾸면 추천이 즉시 다시 계산됩니다.

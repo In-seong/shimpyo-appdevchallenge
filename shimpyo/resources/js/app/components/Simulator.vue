@@ -11,7 +11,7 @@ watch(s, () => emit('update:modelValue', { ...s }), { deep: true });
 const scenarios = [
   { key: 'holiday',  label: '명절 귀성',  hint: '가족 동승 · 장거리' },
   { key: 'weekend',  label: '주말 여행',  hint: '아이들 뒷좌석 · 낮' },
-  { key: 'business', label: '출장 이동',  hint: '혼자 · 시간 압박' },
+  { key: 'business', label: '출장 이동',  hint: '혼자 · 내비 목적지 없음' },
   { key: 'night',    label: '심야 주행',  hint: '혼자 · 새벽 2시' },
   { key: 'warning',  label: '경고 발생',  hint: '타이어 저압' },
 ];
