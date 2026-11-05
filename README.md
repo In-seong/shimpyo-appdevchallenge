@@ -21,7 +21,7 @@
 
 ## APK 파일 위치
 
-- 저장소 내: [`apk/shimpyo_release.apk`](apk/) — 서명된 release 빌드
+- 저장소 내: [`apk/황인성_쉼표_release.apk`](apk/) — 서명된 release 빌드 (minSdk 28 / targetSdk 35)
 - 또는 위 내려받기 주소
 
 ## 실행 방법
@@ -29,7 +29,7 @@
 ### 1) APK 설치해서 보기
 
 ```bash
-adb install -r apk/shimpyo_release.apk
+adb install -r apk/황인성_쉼표_release.apk
 ```
 
 설치 후 **쉼표** 아이콘을 실행하면 웹뷰가 위 차량 앱 주소를 엽니다. 네트워크 연결이 필요합니다.

@@ -56,6 +56,10 @@ const nudge = async (kind) => {
       <button @click="nudge('temp')">온도 {{ temp >= 25 ? '낮추기' : '올리기' }}</button>
       <button class="ghost" @click="$emit('back')">지금 일어나기</button>
     </div>
+
+    <p v-if="!waking" class="stage-note">
+      차량 제어 3종은 Vehicle Control SDK가 준비 중이라 2단계 기능입니다. 타이머와 기상 알림은 조회 API만으로 동작합니다.
+    </p>
   </div>
 </template>
 
@@ -119,6 +123,14 @@ const nudge = async (kind) => {
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.stage-note {
+  font-size: 13px;
+  color: rgba(234,240,236,.45);
+  text-align: center;
+  max-width: 54ch;
+  line-height: 1.6;
 }
 
 .wake-enter-active { transition: opacity .9s var(--ease), transform .9s var(--ease); }

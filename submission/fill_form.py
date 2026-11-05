@@ -47,8 +47,41 @@ def runs_for(text: str) -> str:
     return "".join(pieces)
 
 
+def ensure_unpacked() -> None:
+    """unpacked/ 가 없으면 원본 DOCX 에서 새로 푼다.
+
+    원본은 외부에서 받은 파일이므로 심볼릭 링크는 제거한다.
+    """
+    doc_xml = os.path.join(UNPACKED, "word", "document.xml")
+    if os.path.exists(doc_xml):
+        return
+
+    if os.path.isdir(UNPACKED):
+        shutil.rmtree(UNPACKED)
+    os.makedirs(UNPACKED, exist_ok=True)
+    subprocess.run(["unzip", "-q", SRC_DOCX, "-d", UNPACKED], check=True)
+
+    for root, dirs, files in os.walk(UNPACKED):
+        for name in files + dirs:
+            path = os.path.join(root, name)
+            if os.path.islink(path):
+                os.unlink(path)
+
+    # Word 가 텍스트를 여러 run 으로 쪼개 두어 찾기 어려우므로 병합한다
+    merge = os.path.join(
+        os.path.expanduser("~"),
+        ".claude/skills/synced/b0cfba37-67f6-478e-ad86-68ffee637e48_af517971-fa36-4e68-80bd-c07b416b171b",
+        "docx/scripts/merge_runs.py",
+    )
+    if os.path.exists(merge):
+        subprocess.run(["python3", "-I", merge, UNPACKED], check=False)
+
+    print("unpacked/ 를 원본에서 새로 풀었습니다.")
+
+
 def main() -> int:
     sections = load_sections()
+    ensure_unpacked()
     doc_path = os.path.join(UNPACKED, "word", "document.xml")
     d = io.open(doc_path, encoding="utf-8").read()
 
