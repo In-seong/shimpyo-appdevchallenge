@@ -26,3 +26,6 @@ shell-app/keystore.properties
 
 # 접수양식 작업 디렉터리
 submission/unpacked/
+
+# 서명·연락처가 들어간 제출본 (11/16 Public 전환 대비 — 저장소에 올리지 않는다)
+submission/쉼표_접수양식.docx
