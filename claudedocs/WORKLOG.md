@@ -6,11 +6,90 @@
 ---
 
 ## 📌 현재 진행 중 / 다음 할 일
-- **접수 양식 분량 조정 후 제출** — appdevchallenge@hyundai-partners.com, **마감 2026-11-15**. `submission/쉼표_접수양식.docx` 완성본 존재(7칸 채움, shortform_link만 빈칸). 공모전 양식의 칸별 글자 수 제한을 확인해 초과 시 pleos_plan(2,074자)·reference_files(2,098자)부터 압축.
-- **Claude Docs 아티팩트는 구버전**(9장/6화면). 정본은 `docs/쉼표-기획서.md`(13장/7화면). 제출은 로컬 정본에서 할 것 — https://claude.ai/artifact/RHR2VX5tQLY4pD9TiZ6EbY 는 참조 금지.
-- git 커밋 미실행(사용자 요청 시에만). 커밋 2개 존재, 현재 3개 파일 수정 상태.
-- 선택 사항: 관리자에 로그인 없음(심사위원 접근성 위해 공개). 필요 시 추가.
-- 숏폼 영상(shortform_link)은 아직 없음. 양식에 선택 항목인지 확인 필요.
+- **오늘(2026-11-13) 제출** — appdevchallenge@hyundai-partners.com, 제목 `[차량용 앱 개발 공모전] 황인성_황인성`, 마감 2026-11-15 23:59. 제출은 **사용자가 직접** 한다(명시 요청).
+  - 사용자가 직접 채워야 하는 칸: 접수양식 01 참가신청서(이메일·휴대폰·소속〔전남대학교 대학원 권장〕·작성일), 03 개인정보 동의서, 04 서명.
+  - 첨부: `submission/쉼표_접수양식.docx` + `video/황인성_쉼표_시연영상.mp4`(2.6MB).
+  - **메일 본문에 저장소 주소 + 최종 커밋 해시를 반드시 적는다** (공지 요구사항). 심사는 그 커밋 기준.
+- **🚨 11월 16일(월)까지 저장소를 Public 으로 전환** → **11월 23일(1차 결과 발표)까지 공개 유지**. 안 하면 개발산출물 가산점 미적용.
+  - `gh repo edit In-seong/shimpyo-appdevchallenge --visibility public`
+- **심사용 계정 Collaborator 초대는 불필요** — 공지 `비공개 GitHub 저장소 제출 방법 및 접수 관련 추가 안내`에서 명시 확인(2026-11-13). 이전 기록의 "계정 공지 대기"는 무효.
+- **숏폼 챌린지 미응모 확정** — `shortform_link` 빈칸. 만들어 둔 `video/황인성_쉼표_숏폼.mp4`·`video/shortform/` 은 커밋하지 않고 로컬에만 둠.
+- 에뮬레이터에서 좌석 착좌 감지 API 확인(선택) — 콘솔의 '좌석 설정 상태 조회'에 시트 포지션·열선·안전벨트·머리받침대는 있으나 **착좌 센서는 없음**. 놀이 모드 트리거가 여기 의존(안전벨트 폴백 존재).
+- DOCX를 Word로 직접 열어 눈으로 확인(로컬에 LibreOffice·pandoc 없어 렌더 검증 못 함).
+- 선택: `gh auth switch --user inseong91` 로 활성 계정 원복(이전 세션에서 `In-seong`으로 전환했음).
+- **Claude Docs 아티팩트는 구버전**(9장/6화면). 정본은 `docs/쉼표-기획서.md`. https://claude.ai/artifact/RHR2VX5tQLY4pD9TiZ6EbY 는 참조 금지.
+
+---
+
+## 2026-11-13 — 제출 직전 공지 재확인 · 저장소 공개 요건 반영
+
+**한 일**
+- 공모전 공지 `비공개 GitHub 저장소 제출 방법 및 접수 관련 추가 안내` 와 `/guide/submission` 재확인. 세 가지가 바뀌었다:
+  1. **심사용 계정 Collaborator 초대 불필요.** 그간 "계정 공지 대기" 상태로 남겨둔 과제가 소멸했다.
+  2. 대신 **접수 마감 후 11/16(월)까지 Public 전환 → 11/23(1차 결과)까지 유지**가 조건. 못 하면 개발산출물 가산점 미적용. (불가하면 마감 전 소스+APK zip 다운로드 링크 제출로 대체 가능)
+  3. **제출 메일 본문에 저장소 주소 + 최종 커밋 해시 기재** 필수. 심사는 그 커밋 기준.
+- 같은 공지에 **"README 에 사용한 Pleos Connect 에뮬레이터 버전과 화면 스펙을 기재"** 요구가 있어 `README.md` 에 `## 검증 환경 (심사 기준)` 절 신설 — Emulator 2.1.0 / 시스템 이미지 Android API 34 / AVD Automotive·Cold·RAM 4GB / 화면 1920×720 / minSdk 28·targetSdk 35 / `ai.pleos.playground:Vehicle:2.3.2`. 기획서 387~397행에만 있던 내용을 README로 끌어올린 것.
+- `submission/접수양식-작성내용.md` 의 저장소 줄에서 **"심사용 계정 초대 예정"** 문구 제거 → Public 전환 일정과 커밋 해시 기재 방침으로 교체. DOCX 재생성(`python3 -I fill_form.py`).
+- 숏폼 미응모 확정 → `video/README.md` 의 숏폼 절 되돌림. 숏폼 산출물은 커밋하지 않고 로컬 보관.
+
+**다음**
+- 사용자가 메일 제출(해시 포함) → 11/16까지 저장소 Public 전환.
+
+---
+
+## 2026-11-06 — 공모전 가이드 완독 · Pleos 프로젝트 생성 · 접수양식·APK·영상 완성 (커밋은 11-05자)
+
+**한 일**
+- **공모전 공식 가이드 전 항목 완독**(appdevchallenge.auto-hmg.io/guide) 후 요건을 산출물에 반영. 그 결과:
+  - **참가 부문을 `대학(원)생`으로 결정**. 수상 규모가 일반 부문과 동일하고, 심사 기준에 **사업성**이 있어 일반 부문(스타트업·기업)과 겨루면 불리. 사용자는 (주)모빌리티지 기술이사이자 전남대 대학원생이지만 **회사 업무 연장이 아닌 개인 지원**이라 자격 문제 없음. 참가 단위는 **개인**.
+  - **GitHub은 비공개 저장소**로. 심사용 계정 공지 후 Collaborator 초대가 전제.
+  - 접수양식의 "소개 자료 분량 제한은 없습니다" 문구 확인 → **그간 미결로 남겨둔 '분량 조정' 과제 소멸**.
+- **Pleos 개발자 문서 4종 추가 독파**(에뮬레이터 셋업, developers 포털, connect-sdk-pleos, vehicle-sdk-sample-app). 로그인 게이팅·JS 렌더 때문에 Docusaurus 청크를 직접 받아 추출.
+- **Pleos Playground 프로젝트 실제 생성**(`쉼표` / 개발사명 `황인성` / 모빌리티 서비스). 프로젝트 ID는 `CLAUDE.local.md`에 기록.
+- **콘솔 실측으로 기획서 두 곳을 정정**:
+  - **Vehicle Control SDK는 '준비 중'이라 신청조차 불가**. → 휴식 모드를 **1단계(조회만: 타이머·기상 알림) / 2단계(차량 제어 3종)**로 쪼개고 화면에 그 사실을 문장으로 노출. 심사위원이 "제어 된다고 썼는데?"라고 물을 자리를 선제 차단.
+  - **권한명 3건이 틀렸음**: `CAR_MILEAGE`(존재하지 않음)→`CAR_DRIVE`, `CAR_SEAT`→`CAR_SEATS`, `CAR_LIGHT`→`CAR_LIGHTS`. 더해 **제어 권한 계층(`CONTROL_CAR_*`)을 아예 빠뜨리고 있었음** → 8장에 권한 2층 구조로 재작성.
+  - **LLM SDK를 핵심 기능으로 적어둔 것도 정정**. 공식 지원 5종 SDK에 없음 → 확장 옵션으로 격하.
+- **접수양식 작성 파이프라인 구축**: `submission/접수양식-작성내용.md`(정본, `===[tag]===` 구분)를 `fill_form.py`가 DOCX 콘텐츠 컨트롤(`w:sdt`/`w:tag`) 8칸에 주입. 양식이 단일행으로 만들어둔 2칸은 `FORCE_MULTILINE`으로 `w:multiLine` 강제.
+- **릴리스 APK 서명 빌드**(minSdk 28 / targetSdk 35) 및 호스팅.
+- **시연 영상 제작 — 126초 / 1920×880 / 2.6MB**. 상단 160px 자막 띠 + 하단 1920×720 라이브 사이트 iframe 구조(`studio.html`)로 자막이 앱 UI를 가리지 않게 함. `record.js`에 8구간 시나리오. 4회 재촬영하며 프레임 추출 + ffmpeg 콘택트시트로 매번 검증.
+
+**변경 파일**
+- `docs/쉼표-기획서.md` — 7장 SDK 가용성 표(콘솔 실측), 8장 권한 2층 구조·22행 API 매핑, 10장에 영상 주소
+- `shimpyo/app/Services/PleosVehicleGateway.php` — `remain_time_sec`·`remain_distance_km`·`navigating`·`destination` 추가
+- `shimpyo/app/Services/PlaylistBuilder.php` — 뒤에 한 편 더 들어갈 여유를 남기는 상한 계산
+- `shimpyo/resources/js/app/App.vue` — 출장 프리셋에 `navigating: false`
+- `shimpyo/resources/js/app/screens/RestMode.vue` — 2단계 기능 고지 문장
+- `submission/{접수양식-작성내용.md,fill_form.py,쉼표_접수양식.docx}` — 8칸 작성 + 생성 스크립트
+- `shell-app/**` — 서명 릴리스 빌드 설정(kotlin-stdlib 중복 제외·1.9.24 강제)
+- `video/{황인성_쉼표_시연영상.mp4,녹화스크립트_record.js,녹화스크립트_studio.html,README.md}`
+- `CLAUDE.local.md`(git 미추적) — Pleos 프로젝트 ID, 서버 접속은 **SSH 키 인증**으로 정정
+
+**결정/맥락**
+- **영상 녹화가 버그 3건을 잡아냈다. 전부 "문서에는 있는데 실제로는 죽어 있던" 종류**:
+  1. **`toSignals()`에 `remain_time_sec`이 빠져 있어 '출발 후 이어 듣기'가 한 번도 동작한 적이 없었음.** 기획서에 기능으로 적어둔 것이 실제로는 늘 0분이었다. 화면을 녹화하지 않았으면 못 찾았을 자리.
+  2. 재생목록이 **"들어가는 가장 긴 것" 탐욕 선택**이라 12분 예산에 12분짜리 1편만 뽑혔음(채움률 91%인데 '재생목록'이 아님) → 2편 88% / 23분 2편 96%.
+  3. **출장 이동 프리셋에 `navigating: false`가 없어** 기획서 10장 표의 "내비 없음 · 7분(추정)"을 데모가 재현 못 했음. 심사위원이 직접 누르면 바로 들통날 자리.
+  → **교훈: 기획서에 적은 시나리오는 화면으로 한 번 끝까지 재생해봐야 한다.** 단위 동작이 되는 것과 시나리오가 재현되는 것은 다르다.
+- 영상 구조를 '자막 띠 + iframe'으로 잡은 이유: 오버레이 자막은 반드시 UI 일부를 가리고, 가리는 순간 "뭘 숨기나"로 읽힌다.
+- 영상 8구간 중 **03(시뮬레이터로 타이어 경고 → 추천이 점검으로 즉시 전환)**과 **06(목적지 없음 → 폴백 추정 + '추정' 배지)**이 핵심. 전자는 "엔진이 실제로 돈다", 후자는 "제약을 알고 설계했다"를 말이 아니라 화면으로 증명하는 자리.
+- 부문 선택에서 **일반 부문이 불리하다고 판단한 근거는 '수상 규모 동일 + 사업성 심사 기준'** 두 가지. 자격상 둘 다 가능해서 순수하게 경쟁 환경으로 골랐다.
+- **함정**: `gh push`가 "Repository not found"로 실패. 원인은 활성 gh 계정이 `inseong91`로 바뀌어 있던 것 → `gh auth switch --user In-seong`. (원복하려면 `gh auth switch --user inseong91`)
+- **함정**: `rm -rf frames/*` 같은 `cd` 이후 상대경로 glob이 안전장치에 걸림 → 절대경로 사용.
+- **함정**: Python 3.14에서 lxml이 깨져 DOCX 검증을 stdlib ElementTree로 했음. LibreOffice·pandoc도 없어 **PDF 렌더 확인은 못 함** — Word로 직접 열어봐야 한다.
+- 서버 배포 시 rsync `--delete`가 `public/download/`를 지워버렸음 → `--exclude 'public/download'` 추가(APK·영상이 거기 있다).
+
+**배포 주소**
+- 차량 앱 https://shimpyo.revuplan.com · 관리자 https://shimpyo-admin.revuplan.com
+- APK https://shimpyo.revuplan.com/download/shimpyo.apk
+- 시연 영상 https://shimpyo.revuplan.com/download/shimpyo-demo.mp4
+
+**다음 할 일**
+- 사용자가 접수양식 개인 정보란 작성 → 메일 제출(마감 11/15)
+- 심사용 GitHub 계정 공지 시 Collaborator 초대
+- 에뮬레이터에서 좌석 착좌 감지 API 실측
+
+**상태**: 완료 (제출 직전까지). 제출은 사용자 몫.
 
 ---
 

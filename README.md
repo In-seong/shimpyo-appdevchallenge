@@ -20,6 +20,29 @@
 차량 디스플레이(1920×720) 기준으로 설계했고 PC·휴대폰에서도 같은 화면이 열립니다.
 우측 상단 **차량 데이터** 버튼으로 주행 시간·시각·동승자·경고등·배터리를 바꾸면 추천이 즉시 다시 계산됩니다.
 
+## 검증 환경 (심사 기준)
+
+실차 없이 **Pleos Connect 에뮬레이터**로 검증하는 것을 전제로 설계했습니다.
+화면·빌드 스펙은 아래 환경에 맞췄습니다.
+
+| 항목 | 값 |
+|---|---|
+| Pleos Connect Emulator | **2.1.0** (Virtual Console 지원 최소 버전) |
+| 시스템 이미지 | Pleos Connect, Android API 34 |
+| AVD 설정 | Form Factor **Automotive** · Default boot **Cold** · RAM **4GB** |
+| 화면 스펙 | **1920×720** (차량 센터 디스플레이), 가로 고정 |
+| 빌드 | minSdk 28 / targetSdk 35 · Gradle 8.x |
+| Vehicle SDK | `ai.pleos.playground:Vehicle:2.3.2` (Maven: `https://nexus-playground.pleos.ai/repository/maven-releases/`) |
+
+시스템 이미지는 Android Studio 의 **SDK Update Sites** 에 Pleos 저장소를 추가해 받습니다
+(맥 `crp-arm64-sys-img.xml`, 윈도우·리눅스 `crp-sys-img.xml`).
+
+**지금 제출물의 동작 범위를 분명히 밝힙니다.** 1차 제출물은 웹뷰 셸앱 + 모의 게이트웨이
+(`PleosVehicleGateway.php`)로 동작하며, **에뮬레이터 Virtual Console 실측은 아직 하지 않았습니다.**
+차량 데이터 변화에 따른 추천 재계산은 웹 데모 우측 상단 **차량 데이터** 버튼으로 같은 입력을 넣어
+확인할 수 있고, 슬라이더마다 대응되는 실제 SDK 메서드명을 적어 두었습니다.
+2차 개발 착수 시 이 입력부를 Virtual Console + Connect SDK 실제 호출로 교체합니다.
+
 ## APK 파일 위치
 
 - 저장소 내: [`apk/황인성_쉼표_release.apk`](apk/) — 서명된 release 빌드 (minSdk 28 / targetSdk 35)
